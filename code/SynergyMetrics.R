@@ -1,5 +1,5 @@
 rm(list = ls())
-setwd('~/Documents/Sports Analytics/Player Synergy/')
+setwd('~/Documents/Sports Analytics/Player Synergy/teamwork-plus-minus/code/')
 source('SynergyMetricsAuxFcns.R')
 require(ggplot2)
 require(dplyr)
@@ -14,7 +14,7 @@ cwint = data.frame('Player1' = character(), 'Player2' = character(), 'Type' = ch
 for (season in seasons) {
   s = strsplit(season, '-')
   sstr = paste(s[[1]][1], '-20', s[[1]][2], sep = '')
-  wname = paste('interactions/', sstr, '.csv', sep = '')
+  wname = paste('../results/interactive/', sstr, '.csv', sep = '')
   seasonResults = read.csv(wname, header = F)
   plstr = strsplit(as.character(seasonResults$V1), ' - ')
   pldf = t(sapply(plstr, getDfRow))
@@ -23,7 +23,7 @@ for (season in seasons) {
                    'Value' = seasonResults$V2)
   cwint = rbind(cwint, sdf)
   
-  woname = paste('no-interactions/', sstr, '.csv', sep = '')
+  woname = paste('../results/additive/', sstr, '.csv', sep = '')
   seasonResults = read.csv(woname, header = F)
   plstr = strsplit(as.character(seasonResults$V1), ' - ')
   pldf = t(sapply(plstr, getDfRow))

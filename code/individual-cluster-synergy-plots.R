@@ -2,7 +2,7 @@ rm(list = ls())
 library(ggplot2)
 library(dplyr)
 library(reshape2)
-player.clusters = read.csv('Clustering.csv')
+player.clusters = read.csv('PlayerClustering.csv')
 player.synergy = read.csv('PlayerSynergy.csv')
 def.synergy = player.synergy[player.synergy$Type == 'Def', ]
 off.synergy = player.synergy[player.synergy$Type == 'Off', ]

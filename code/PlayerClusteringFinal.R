@@ -1,5 +1,6 @@
+require(cluster)
 rm(list = ls())
-setwd('~/Documents/Sports Analytics/Player Synergy/')
+setwd('~/Documents/Sports Analytics/Player Clustering/')
 source('ClusteringTestFcns.R')
 
 seasons = c('2004-05', '2005-06', '2006-07', '2007-08', '2008-09', '2009-10',
@@ -29,7 +30,7 @@ if (seasonflag == 0) {
     vp = cumsum(pc$sdev^2/sum(pc$sdev^2))
     npc = which(vp >= .9)
     npc = npc[1]
-    km = kmeans(pc$scores[ , 1:npc], k)
+    km = pam(pc$scores[ , 1:npc], k)
     seasonResults = data.frame('Player' = names(km$cluster), 'Season' = rep(season, nrow(playerStats)), 
                                'Cluster' = km$cluster)
     rownames(seasonResults) = NULL
